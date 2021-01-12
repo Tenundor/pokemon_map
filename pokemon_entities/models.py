@@ -10,6 +10,14 @@ class Pokemon(models.Model):
         null=True, blank=True
     )
 
+    description = models.TextField(null=True, blank=True)
+    parent = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
     def __str__(self):
         return self.title
 

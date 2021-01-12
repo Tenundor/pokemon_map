@@ -87,7 +87,7 @@ def show_pokemon(request, pokemon_id):
             }
         )
 
-    previous_evolution = requested_pokemon.parent
+    previous_evolution = requested_pokemon.previous_evolution
     if previous_evolution:
         pokemon["previous_evolution"] = {
             "title_ru": previous_evolution.title,

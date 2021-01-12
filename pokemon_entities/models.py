@@ -11,7 +11,7 @@ class Pokemon(models.Model):
     )
 
     description = models.TextField(null=True, blank=True)
-    parent = models.ForeignKey(
+    previous_evolution = models.ForeignKey(
         "self",
         on_delete=models.SET_NULL,
         null=True,

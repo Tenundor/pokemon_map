@@ -10,7 +10,7 @@ MOSCOW_CENTER = [55.751244, 37.618423]
 DEFAULT_IMAGE_URL = "https://vignette.wikia.nocookie.net/pokemon/images/6/6e/%21.png/revision/latest/fixed-aspect-ratio-down/width/240/height/240?cb=20130525215832&fill=transparent"
 
 
-def add_pokemon(folium_map, lat, lon, image_url=DEFAULT_IMAGE_URL):
+def add_pokemon(folium_map, lat, lon, image_url):
     icon = folium.features.CustomIcon(
         image_url,
         icon_size=(50, 50),
@@ -28,18 +28,22 @@ def show_all_pokemons(request):
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
     for pokemon in pokemons:
         pokemon_entities = PokemonEntity.objects.filter(pokemon=pokemon)
+        image = pokemon.image
+        image_url = DEFAULT_IMAGE_URL
+        if image:
+            image_url = request.build_absolute_uri(image.url)
         for pokemon_entity in pokemon_entities:
             add_pokemon(
                 folium_map,
                 pokemon_entity.latitude,
                 pokemon_entity.longitude,
-                request.build_absolute_uri(pokemon.image.url),
+                image_url,
             )
 
     pokemons_on_page = []
     for pokemon in pokemons:
         image = pokemon.image
-        image_url = None
+        image_url = DEFAULT_IMAGE_URL
         if image:
             image_url = pokemon.image.url
         pokemons_on_page.append({
@@ -61,7 +65,7 @@ def show_pokemon(request, pokemon_id):
         return HttpResponseNotFound('<h1>Такой покемон не найден</h1>')
 
     image = requested_pokemon.image
-    image_url = None
+    image_url = DEFAULT_IMAGE_URL
     if image:
         image_url = request.build_absolute_uri(requested_pokemon.image.url)
 

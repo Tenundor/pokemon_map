@@ -18,27 +18,27 @@
 
 Для запуска сайта вам понадобится Python третьей версии.
 
-Скачайте код с GitHub. Затем установите зависимости:
+- Скачайте код с GitHub. Затем установите зависимости:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-[Настройте переменные окружения.](https://github.com/Tenundor/pokemon_map#%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%BE%D0%BA%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F)
+- [Настройте переменные окружения.](https://github.com/Tenundor/pokemon_map#%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%BE%D0%BA%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F)
 
-Отмигрируйте базу данных:
+- Отмигрируйте базу данных:
 
 ```sh
 python3 manage.py migrate
 ```
 
-Создайте суперпользователя для доступа к базе данных:
+- Создайте суперпользователя для доступа к базе данных:
 
 ```sh
 python3 manage.py createsuperuser
 ```
 
-Запустите разработческий сервер:
+- Запустите разработческий сервер:
 
 ```sh
 python3 manage.py runserver

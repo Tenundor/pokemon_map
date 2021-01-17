@@ -7,7 +7,7 @@ from pokemon_entities.models import Pokemon, PokemonEntity
 
 
 MOSCOW_CENTER = [55.751244, 37.618423]
-DEFAULT_IMAGE_URL = "https://vignette.wikia.nocookie.net/pokemon/images/6/6e/%21.png/revision/latest/fixed-aspect-ratio-down/width/240/height/240?cb=20130525215832&fill=transparent"
+DEFAULT_IMAGE_URL = 'https://vignette.wikia.nocookie.net/pokemon/images/6/6e/%21.png/revision/latest/fixed-aspect-ratio-down/width/240/height/240?cb=20130525215832&fill=transparent'
 
 
 def add_pokemon(folium_map, lat, lon, image_url):
@@ -34,9 +34,9 @@ def request_pokemon_entities(pokemon):
     for entity in pokemon_entities:
         requested_pokemon_entities.append(
             {
-                "level": entity.level,
-                "lat": entity.latitude,
-                "lon": entity.longitude,
+                'level': entity.level,
+                'lat': entity.latitude,
+                'lon': entity.longitude,
             }
         )
     return requested_pokemon_entities
@@ -45,9 +45,9 @@ def request_pokemon_entities(pokemon):
 def request_evolution(request, evolution, default_image_url):
     image_url = get_image_url(request, evolution.image, default_image_url)
     return {
-            "title_ru": evolution.title,
-            "pokemon_id": evolution.id,
-            "img_url": image_url,
+            'title_ru': evolution.title,
+            'pokemon_id': evolution.id,
+            'img_url': image_url,
         }
 
 
@@ -77,15 +77,15 @@ def request_pokemon(request, pokemon_id, default_image_url):
     next_evolution = request_next_evolution(request, pokemon,
                                             default_image_url)
     return {
-        "pokemon_id": pokemon.id,
-        "title_ru": pokemon.title,
-        "title_en": pokemon.title_en,
-        "title_jp": pokemon.title_jp,
-        "description": pokemon.description,
-        "img_url": image_url,
-        "entities": pokemon_entities,
-        "previous_evolution": previous_evolution,
-        "next_evolution": next_evolution,
+        'pokemon_id': pokemon.id,
+        'title_ru': pokemon.title,
+        'title_en': pokemon.title_en,
+        'title_jp': pokemon.title_jp,
+        'description': pokemon.description,
+        'img_url': image_url,
+        'entities': pokemon_entities,
+        'previous_evolution': previous_evolution,
+        'next_evolution': next_evolution,
     }
 
 
@@ -109,7 +109,7 @@ def show_all_pokemons(request):
             'title_ru': pokemon.title,
         })
 
-    return render(request, "mainpage.html", context={
+    return render(request, 'mainpage.html', context={
         'map': folium_map._repr_html_(),
         'pokemons': pokemons_on_page,
     })
@@ -123,7 +123,7 @@ def show_pokemon(request, pokemon_id):
             folium_map, pokemon_entity['lat'], pokemon_entity['lon'],
             pokemon['img_url'])
 
-    return render(request, "pokemon.html", context={
+    return render(request, 'pokemon.html', context={
         'map': folium_map._repr_html_(),
         'pokemon': pokemon,
     })

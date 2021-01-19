@@ -17,7 +17,6 @@ def add_pokemon(folium_map, lat, lon, image_url):
     )
     folium.Marker(
         [lat, lon],
-        # tooltip=name,  # disable tooltip because of folium encoding bug
         icon=icon,
     ).add_to(folium_map)
 

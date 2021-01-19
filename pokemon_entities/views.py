@@ -29,9 +29,8 @@ def get_image_url(request, image, default_image_url):
 
 
 def request_pokemon_entities(pokemon):
-    pokemon_entities = PokemonEntity.objects.filter(pokemon=pokemon)
     requested_pokemon_entities = []
-    for entity in pokemon_entities:
+    for entity in pokemon.entities.all():
         requested_pokemon_entities.append(
             {
                 'level': entity.level,
